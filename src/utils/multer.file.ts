@@ -1,6 +1,6 @@
 import multer from 'multer';
 
-
+console.log(`>>> ${process.cwd()}/uploads/`)
 // Configuração de armazenamento
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
