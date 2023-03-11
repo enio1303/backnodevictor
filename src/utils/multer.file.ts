@@ -9,7 +9,7 @@ exec('ls ./', (err, output) => {
         return
     }
     // log the output received from the command
-    console.log("ls ./: \n", output)
+    console.log("multerfile ls ./: \n", output)
 })
 
 exec('ls ./src/uploads', (err, output) => {
@@ -20,13 +20,13 @@ exec('ls ./src/uploads', (err, output) => {
         return
     }
     // log the output received from the command
-    console.log("ls ./src/uploads: \n", output)
+    console.log("multerfile ls ./src/uploads: \n", output)
 })
 console.log(`>>> ${process.cwd()}/uploads/`)
 // Configuração de armazenamento
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, `${process.cwd()}/uploads/`)
+        cb(null, `${process.cwd()}/src/uploads/`)
     },
     filename: function (req, file, cb) {
         // Extração da extensão do arquivo original:

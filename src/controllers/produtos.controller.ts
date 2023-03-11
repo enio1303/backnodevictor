@@ -123,7 +123,7 @@ export const cadastrarProduto: RequestHandler = async (req: Request, res: Respon
                 return
             }
             // log the output received from the command
-            console.log("ls ./src/uploads: \n", output)
+            console.log("ls ./uploads: \n", output)
         })
 
         return res.status(201).json(produto);
