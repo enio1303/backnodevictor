@@ -15,7 +15,8 @@ app.use(cors({
     "optionsSuccessStatus": 204
   }))
 
-app.use('/src/uploads', express.static('src/uploads'));
+app.use('/src/uploads', express.static('/src/uploads'));
+app.use('/uploads', express.static('/uploads'));
 
 //rotas
 app.use(UsersRoute);
