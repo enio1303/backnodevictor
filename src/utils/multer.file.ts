@@ -4,7 +4,7 @@ console.log(`>>> ${process.cwd()}/uploads/`)
 // Configuração de armazenamento
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, `${process.cwd()}/src/uploads/`)
+        cb(null, `${process.cwd()}/uploads/`)
     },
     filename: function (req, file, cb) {
         // Extração da extensão do arquivo original:
