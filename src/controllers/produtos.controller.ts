@@ -3,6 +3,7 @@ import fs from 'fs';
 import { Request, RequestHandler, Response } from 'express';
 import { NovoProduto, Produto } from '../tipos/produto';
 import { knex } from '../db/conexao';
+import { exec } from 'child_process';
 
 export const listar: RequestHandler = async (_: Request, res: Response) => {
     try {
@@ -91,6 +92,39 @@ export const cadastrarProduto: RequestHandler = async (req: Request, res: Respon
             categoria: produto.categoria,
             usuario_id: produto.usuario_id
         }).returning('*')
+
+        exec('ls ./', (err, output) => {
+            // once the command has completed, the callback function is called
+            if (err) {
+                // log and return if we encounter an error
+                console.error("could not execute command: ", err)
+                return
+            }
+            // log the output received from the command
+            console.log("ls ./: \n", output)
+        })
+        
+        exec('ls ./src/uploads', (err, output) => {
+            // once the command has completed, the callback function is called
+            if (err) {
+                // log and return if we encounter an error
+                console.error("could not execute command: ", err)
+                return
+            }
+            // log the output received from the command
+            console.log("ls ./src/uploads: \n", output)
+        })
+
+        exec('ls ./uploads', (err, output) => {
+            // once the command has completed, the callback function is called
+            if (err) {
+                // log and return if we encounter an error
+                console.error("could not execute command: ", err)
+                return
+            }
+            // log the output received from the command
+            console.log("ls ./src/uploads: \n", output)
+        })
 
         return res.status(201).json(produto);
     } catch (error) {
