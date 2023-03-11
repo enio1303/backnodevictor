@@ -10,7 +10,7 @@ export const listar: RequestHandler = async (_: Request, res: Response) => {
         let produtos = await knex<Produto>('produtos')
 
         produtos = produtos.map(produto => {
-            produto.foto = `${process.env.BASE_URL}/src/uploads/${produto.foto}`;
+            produto.foto = `${process.env.BASE_URL}/uploads/${produto.foto}`;
             return produto;
         })
         return res.json(produtos);
@@ -29,7 +29,7 @@ export const detalhar: RequestHandler = async (req: Request, res: Response) => {
         if (!produto) {
             return res.status(404).json({ mensagem: 'Produto não encontrado.' })
         }   
-        produto!.foto = `${process.env.BASE_URL}/src/uploads/${produto!.foto}`;
+        produto!.foto = `${process.env.BASE_URL}/uploads/${produto!.foto}`;
         
         return res.json(produto);
     } catch (error) {
@@ -45,7 +45,7 @@ export const listarProdutos: RequestHandler = async (req: Request, res: Response
             .where({ usuario_id: user.id })
 
         produtos = produtos.map(produto => {
-            produto.foto = `${process.env.BASE_URL}/src/uploads/${produto.foto}`;
+            produto.foto = `${process.env.BASE_URL}/uploads/${produto.foto}`;
             return produto;
         })
         return res.json(produtos);
@@ -65,7 +65,7 @@ export const detalharProduto: RequestHandler = async (req: Request, res: Respons
         if (!produto) {
             return res.status(404).json({ mensagem: 'Produto não encontrado.' })
         }   
-        produto!.foto = `${process.env.BASE_URL}/src/uploads/${produto!.foto}`;
+        produto!.foto = `${process.env.BASE_URL}/uploads/${produto!.foto}`;
         
         return res.json(produto);
     } catch (error) {
@@ -92,39 +92,6 @@ export const cadastrarProduto: RequestHandler = async (req: Request, res: Respon
             categoria: produto.categoria,
             usuario_id: produto.usuario_id
         }).returning('*')
-
-        exec('ls ./', (err, output) => {
-            // once the command has completed, the callback function is called
-            if (err) {
-                // log and return if we encounter an error
-                console.error("could not execute command: ", err)
-                return
-            }
-            // log the output received from the command
-            console.log("ls ./: \n", output)
-        })
-        
-        exec('ls ./src/uploads', (err, output) => {
-            // once the command has completed, the callback function is called
-            if (err) {
-                // log and return if we encounter an error
-                console.error("could not execute command: ", err)
-                return
-            }
-            // log the output received from the command
-            console.log("ls ./src/uploads: \n", output)
-        })
-
-        exec('ls ./uploads', (err, output) => {
-            // once the command has completed, the callback function is called
-            if (err) {
-                // log and return if we encounter an error
-                console.error("could not execute command: ", err)
-                return
-            }
-            // log the output received from the command
-            console.log("ls ./uploads: \n", output)
-        })
 
         return res.status(201).json(produto);
     } catch (error) {

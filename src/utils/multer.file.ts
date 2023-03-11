@@ -1,28 +1,6 @@
 import multer from 'multer';
 import { exec } from 'child_process';
 
-exec('ls ./', (err, output) => {
-    // once the command has completed, the callback function is called
-    if (err) {
-        // log and return if we encounter an error
-        console.error("could not execute command: ", err)
-        return
-    }
-    // log the output received from the command
-    console.log("multerfile ls ./: \n", output)
-})
-
-exec('ls ./src/uploads', (err, output) => {
-    // once the command has completed, the callback function is called
-    if (err) {
-        // log and return if we encounter an error
-        console.error("could not execute command: ", err)
-        return
-    }
-    // log the output received from the command
-    console.log("multerfile ls ./src/uploads: \n", output)
-})
-console.log(`>>> ${process.cwd()}/uploads/`)
 // Configuração de armazenamento
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
