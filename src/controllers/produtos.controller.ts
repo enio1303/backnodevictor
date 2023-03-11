@@ -9,7 +9,7 @@ export const listar: RequestHandler = async (_: Request, res: Response) => {
         let produtos = await knex<Produto>('produtos')
 
         produtos = produtos.map(produto => {
-            produto.foto = `${process.env.BASE_URL}/uploads/${produto.foto}`;
+            produto.foto = `${process.env.BASE_URL}/src/uploads/${produto.foto}`;
             return produto;
         })
         return res.json(produtos);
@@ -28,7 +28,7 @@ export const detalhar: RequestHandler = async (req: Request, res: Response) => {
         if (!produto) {
             return res.status(404).json({ mensagem: 'Produto não encontrado.' })
         }   
-        produto!.foto = `${process.env.BASE_URL}/uploads/${produto!.foto}`;
+        produto!.foto = `${process.env.BASE_URL}/src/uploads/${produto!.foto}`;
         
         return res.json(produto);
     } catch (error) {
@@ -44,7 +44,7 @@ export const listarProdutos: RequestHandler = async (req: Request, res: Response
             .where({ usuario_id: user.id })
 
         produtos = produtos.map(produto => {
-            produto.foto = `${process.env.BASE_URL}/uploads/${produto.foto}`;
+            produto.foto = `${process.env.BASE_URL}/src/uploads/${produto.foto}`;
             return produto;
         })
         return res.json(produtos);
@@ -64,7 +64,7 @@ export const detalharProduto: RequestHandler = async (req: Request, res: Respons
         if (!produto) {
             return res.status(404).json({ mensagem: 'Produto não encontrado.' })
         }   
-        produto!.foto = `${process.env.BASE_URL}/uploads/${produto!.foto}`;
+        produto!.foto = `${process.env.BASE_URL}/src/uploads/${produto!.foto}`;
         
         return res.json(produto);
     } catch (error) {
